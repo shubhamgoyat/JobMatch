@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<title>SKILL MATCH</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+            function searchJobs(){
+                console.log(" Click Works!!!")
+                company = document.getElementById("company").value
+                console.log(company)
+                type = document.querySelector('input[name="type"]:checked').value;
+                console.log(type)
+                skills = document.getElementById("skills").value
+                console.log(skills)
+
+                company = document.getElementById("company").value
+                console.log(company)
+                    $.ajax({url: "/searchJobs", 
+                    data : { company_par : company, skills_par: skills, pos_type_par:type },
+                    success: function(result){
+                       console.log("AJAX works!!")
+                       console.log(result)
+                       response_list = JSON.parse(result).jobs;
+                       console.log(response_list)
+                       parent_div = document.getElementById("displayJobs")
+                       sub_parent_div = document.getElementById("displayJobs").firstChild
+                       parent_div.removeChild(sub_parent_div)
+                       sub_parent_div = document.createElement("div"); 
+                       var node = document.createElement("h1"); 
+                       node.innerHTML = "Here are the jobs for you..."               
+                       sub_parent_div.appendChild(node);                              
+                       //document.getElementById("myList").appendChild(node); 
+                       for(var i = 0; i < response_list.length; i++)
+                       {
+                        var node = document.createElement("h3"); 
+                        node.onclick = function(e) {
+                            console.log("2nd click works!!!")
+                            position = event.target.innerHTML
+                            console.log(position)
+                            //window.location='/redirectToNewPage?x=1&y=2'
+                            window.location='/redirectToNewPage?company_par='+company+'&position_par='+position
+                            // $.ajax({url: "/redirectToNewPage", 
+                            //     data : { company_par : company, position_par: position},
+                            //     success: function(result){
+                            //     console.log("AJAX works!!")
+                            //     }
+                            // })
+                        }
+                        node.innerHTML = response_list[i]               
+                        sub_parent_div.appendChild(node);  
+                           
+                       }   
+                       parent_div.appendChild(sub_parent_div)
+
+                    }});
+        
+            }
+    </script>
+</head>
+<style>
+body,h1 {font-family: "Raleway", Arial, sans-serif}
+h1 {letter-spacing: 6px}
+.w3-row-padding img {margin-bottom: 12px}
+</style>
+<body>
+
+    <div class="w3-top">
+        <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+            <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+            <a href="https://drive.google.com/file/d/1k_rCNYUUfM65t0Odo2kEObAl7kgOaIF4/view?usp=sharing" class="w3-bar-item w3-button w3-theme-l1">View Details</a>
+            <a href="https://github.com/shreyasi100/SkillMatch" class="w3-bar-item w3-button w3-theme-l1">View source code</a>
+        </div>
+    </div>
+<!-- !PAGE CONTENT! -->
+<div class="w3-content" style="max-width:1500px">
+
+
+<!-- Header -->
+<div class="w3-panel w3-center w3-opacity" style="padding:64px 16px">
+    <!-- Navbar -->
+
+  <h1 class="w3-xlarge">SKILL MATCH</h1>
+  <h1>Find the ideal job for you</h1>
+</div>
+
+<!-- Photo Grid -->
+
+        <div id="Flight" class="w3-container w3-white w3-center myLink">
+            <div class="w3-padding-16" style="margin:0 -16px;"> 
+                    <label class="w3-large">Company</label>  <br> 
+                    <select class="form-control form-control-lg" style="width: 200px;" id="company">
+                   
+                        <option value='intel'>Intel</option>
+                        <option value='Cisco'>Cisco</option>
+                        <option value='walmart'>Walmart labs</option>
+                        <option value='Twitter'> Twitter </option>
+                    </select>
+            </div>
+            <div class="w3-padding-16" style="margin:0 -16px;"> 
+                <label class="w3-large">Type</label> <br> 
+                <label ><input type="radio" name="type" checked value="Full Time" >Full Time </label> <br>
+                <label ><input type="radio" name="type" value="Internship">Internship</label>
+            </div>
+        
+            <div class="w3-padding-16" style="margin:0 -16px;"> 
+                <label class="w3-large">Skills</label> <br> 
+                <label class="w3-large">Please enter your skills separated by ;</label> <br> 
+                <textarea class="form-control" rows="5"   style="width: 200px;" id='skills'></textarea>
+            </div>
+            <p><button class="w3-button w3-dark-grey" onclick="searchJobs()">Search and find jobs</button></p>
+            <div class="w3-container w3-padding-64 w3-light-grey w3-center w3-large" id="displayJobs"> 
+               
+            </div>
+        </div>
+       
+</div>
+   
+</div>
+  
+
+  
+<!-- End Page Content -->
+</div>
+
+<!-- Footer -->
+<!-- <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large">  -->
+  
+<!-- </footer> -->
+
+</body>
+
+</html>

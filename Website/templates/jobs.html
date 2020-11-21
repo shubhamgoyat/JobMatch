@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<title>Skill Match</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif; text-transform: capitalize;}
+.mySlides {display:none}
+</style>
+<script>
+  function redirect(){
+    console.log("ON CLICK")
+    var link = '{{ link }}'
+    console.log(link)
+    window.location.href = link
+  }
+  function redirect2(){
+    console.log("ON CLICK")
+    var link = '{{ pdfLink }}'
+    console.log(link)
+    window.location.href = link
+  }
+</script>
+<body class="w3-content w3-border-left w3-border-right">
+
+
+
+<!-- Top menu on small screens -->
+<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
+  <span class="w3-bar-item">Skill Match</span>
+  <a href="javascript:void(0)" class="w3-right w3-bar-item w3-button" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+</header>
+
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main w3-white" style="margin-left:75px;margin-right:75px">
+
+  
+
+  <!-- Slideshow Header -->
+  <div class="w3-container" id="apartment">
+    <h2 class="w3-text-green"> {{ company }} </h2>
+    <h4 class="w3-text-green"> {{ position }}</h2>
+    <h6 class="w3-text-green"> {{type_pos}} </h2>
+  </div>
+
+  <div class="w3-container">
+    <h4><strong>Skills</strong></h4>
+    <div class="w3-row w3-large">
+      <div class="w3-col s6">
+        <p><i class="fa fa-fw fa-asterisk"></i> {{ skill1 }}</p>
+        <p><i class="fa fa-fw fa-asterisk"></i> {{ skill2 }}</p>
+        <p><i class="fa fa-fw fa-asterisk"></i> {{ skill3 }}</p>
+      </div>
+      <div class="w3-col s6">
+        <p><i class="fa fa-fw fa-asterisk"></i> {{ skill4 }}</p>
+        <p><i class="fa fa-fw fa-asterisk"></i> {{ skill5 }}</p>
+      </div>
+    </div>
+    <hr>
+    
+    <h4><strong>Most Frequently occuring words in the Job Description </strong></h4>
+    <div class="w3-row w3-large">
+      <div class="w3-col s6">
+        <p><i class="fa fa-fw fa-star-o"></i> {{ word1 }}</p>
+        <p><i class="fa fa-fw fa fa-star-o"></i> {{ word2 }} </p>
+        <p><i class="fa fa-fw fa fa-star-o"></i> {{ word3 }} </p>
+      </div>
+      <div class="w3-col s6">
+        <p><i class="fa fa-fw fa-star-o"></i> {{ word4 }} </p>
+        <p><i class="fa fa-fw fa-star-o"></i> {{ word5 }}</p>
+        
+      </div>
+    </div>
+    <hr>
+     
+    <button type="submit" class="w3-button w3-green w3-third" style="margin-left:15px;margin-right:15px" onclick="redirect()" >Apply now </button>
+    <button type="submit" class="w3-button w3-green w3-third" style="margin-left:15px;margin-right:15px" onclick="redirect2()" >Save PDF of job description</button>
+
+  </div>
+  
+
+
+<!-- End page content -->
+
+
+
+</body>
+
+</html>
